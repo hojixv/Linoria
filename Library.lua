@@ -1,4 +1,4 @@
---// Creds too Xz for custom libary <3
+--// Creds 2 xz for custom libary <3
 
 local InputService = game:GetService('UserInputService');
 local TextService = game:GetService('TextService');
@@ -1254,7 +1254,8 @@ do
                 wait(0.2);
 
                 local Event;
-                Event = InputService.InputBegan:Connect(function(Input)
+                Event = InputService.InputBegan:Connect(function(Input,gp)
+                    if gp then return end
                     local Key;
 
                     if Input.UserInputType == Enum.UserInputType.Keyboard then
@@ -1283,7 +1284,8 @@ do
             end;
         end);
 
-        Library:GiveSignal(InputService.InputBegan:Connect(function(Input)
+        Library:GiveSignal(InputService.InputBegan:Connect(function(Input,gp)
+            if gp then return end
             if (not Picking) then
                 if KeyPicker.Mode == 'Toggle' then
                     local Key = KeyPicker.Value;
@@ -2991,9 +2993,9 @@ function Library:CreateWindow(...)
 
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
-        Size = UDim2.new(0, 0, 0, 25);
+        Size = UDim2.new(0, 530, 0, 25);
         Text = Config.Title or '';
-        TextXAlignment = Enum.TextXAlignment.Left;
+        TextXAlignment = Enum.TextXAlignment.Center;
         ZIndex = 1;
         Parent = Inner;
     });
@@ -3530,17 +3532,15 @@ function Library:CreateWindow(...)
                 local Cursor = Drawing.new('Triangle');
                 Cursor.Thickness = 1;
                 Cursor.Filled = true;
-                Cursor.Visible = true;
+                Cursor.Visible = false;
 
                 local CursorOutline = Drawing.new('Triangle');
                 CursorOutline.Thickness = 1;
                 CursorOutline.Filled = false;
                 CursorOutline.Color = Color3.new(0, 0, 0);
-                CursorOutline.Visible = true;
+                CursorOutline.Visible = false;
 
                 while Toggled and ScreenGui.Parent do
-                    InputService.MouseIconEnabled = false;
-
                     local mPos = InputService:GetMouseLocation();
 
                     Cursor.Color = Library.AccentColor;
