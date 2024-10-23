@@ -1,3 +1,5 @@
+--// Creds too Xz for custom libary <3
+
 local InputService = game:GetService('UserInputService');
 local TextService = game:GetService('TextService');
 local CoreGui = game:GetService('CoreGui');
